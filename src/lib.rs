@@ -32,7 +32,11 @@ impl Board {
         let lines: Vec<&str> = s.split("\n").collect();
         let mut data = Vec::with_capacity(lines.len() * lines.len()); 
         for line in &lines {
-            let digits: Vec<u8> = line.split("").map(|x| x.parse::<u8>().unwrap_or(0)).collect();
+            let mut digits: Vec<u8> = line.split("").map(|x| x.parse::<u8>().unwrap_or(10)).collect();
+            digits.retain(|x| x != &10);
+            if digits.len() < 1 {
+                continue;
+            }
             if digits.len() != 9 {
                 println!("{:#?}", digits);
                 panic!("invalid input! expected 9 numbers, found {}", digits.len());

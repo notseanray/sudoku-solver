@@ -53,8 +53,7 @@ impl Args {
                     None => {
                         let mut board = String::with_capacity(81);
                         let mut sep = 0;
-                        println!("{:#?}", self.total);
-                        for i in self.total[1].split("").into_iter() {
+                        for i in self.total[1].chars().into_iter() {
                             sep += 1;
                             let data = match sep % 9 {
                                 0 => format!("{i}\n"),
